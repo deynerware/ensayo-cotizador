@@ -2,10 +2,10 @@ function main(){
     return {
         product: {
             weight: 'peso',
-            valueKilo: 0,
+            valueKilo: 'valor del kilo',
             flag: 'banderazo',
             valueVar: 'valor variable',
-            percentageMaterial: 0,
+            percentageMaterial: 'porcentaje',
             factorKilo: 'factor kilo',
             progressiveAdjusment: 'ajuste progresivo',
             thickness: 'espesor',
@@ -17,6 +17,7 @@ function main(){
         },
         total: 0,
         weightKilos: 0,
+        time: 'tiempo',
         calc: function() {
             this.quantityKilos();
             this.product.factorKilo = this.product.valueKilo * this.product.percentageMaterial;
@@ -27,6 +28,15 @@ function main(){
                    * this.quote.width
                    * this.product.thickness
                    * this.product.coefficient
+        },
+        rolado: function(){
+            this.total = (this.product.valueKilo * this.weightKilos) * this.product.percentageMaterial;
+        },
+        laser: function(){
+            this.total = (this.product.valueKilo * this.weightKilos) * this.time;
+        },
+        paint: function(){
+            this.total = (this.quote.large * this.quote.width) * (this.product.valueKilo * this.product.percentageMaterial);
         }
     }
 }

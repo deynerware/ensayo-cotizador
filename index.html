@@ -16,7 +16,7 @@
         <div x-data="main()">
             <div class="card mt-5">
                 <div class="card-body">
-                    <h5>Formula para calcular cantidad de kilos:</h5>
+                    <h5>Formula para calcular cantidad de kilos: (lar*anc*esp*coe)</h5>
                     <p>
                         <span x-text="quote.large"></span> *
                         <span x-text="quote.width"></span> *  
@@ -24,7 +24,7 @@
                         <span x-text="product.coefficient"></span>
                         = <span x-text="weightKilos"></span>
                     </p>
-                    <h5>Formula para calcular costo de dobles:</h5>
+                    <h5>Formula para calcular costo de doblez: (v.var+(peso*(fackil*(1-(peso(pesoUni*ajupro))*1)))</h5>
                     <p>
                         <span x-text="product.valueVar"></span> +
                         (<span x-text="weightKilos"></span> *  
@@ -33,6 +33,26 @@
                         (<span x-text="product.weight "></span> * 
                         <span x-text="product.progressiveAdjusment"></span> )) * 1 )))
                     </p>
+                    <h5>Formula para calcular costo de rolado: (valkil*peso)*por</h5>
+                    <p>
+                        (<span x-text="product.valueKilo"></span> *
+                        <span x-text="weightKilos"></span>) *  
+                        <span x-text="product.percentageMaterial"></span>
+                    </p>
+                    <h5>Formula para calcular costo de pintura: (lar*anc)*(valkil*por)</h5>
+                    <p>
+                        (<span x-text="quote.large"></span> *
+                        <span x-text="quote.width"></span>) *  
+                        (<span x-text="product.valueKilo"></span> * 
+                        <span x-text="product.percentageMaterial"></span>)
+                    </p>
+                    <h5>Formula para calcular costo de laser: (valkil*peso)*tiem</h5>
+                    <p>
+                        (<span x-text="product.valueKilo"></span> *
+                        <span x-text="weightKilos"></span>) *  
+                        <span x-text="time"></span>
+                    </p>
+
                 </div>
             </div>
             <div class="card mt-5">
@@ -46,7 +66,7 @@
                         </div>  
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <label for="">Valor Kilo</label>
+                                <label for="">Valor Kilo (o Pintura)</label>
                                 <input type="text" class="form-control" x-model.number="product.valueKilo">
                             </div>
                         </div>  
@@ -110,13 +130,33 @@
                             </div>
                         </div>  
                     </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="">Tiempo</label>
+                                <input type="text" class="form-control" x-model.number="time">
+                            </div>
+                        </div>  
+                    </div>
                     
                     <div class="row">
                         <div class="col-sm-8 offset-2 mt-3">
-                            <button class="btn btn-block btn-primary" @click="calc()">Calcular</button>
-                        </div>
-                        <div class="col-sm-8 offset-2 mt-1">
                             <button class="btn btn-block btn-primary" @click="quantityKilos()">Calcular Kilos</button>
+                        </div>
+                        <div class="col-sm-8 offset-2 mt-3">
+                            <button class="btn btn-block btn-primary" @click="calc()">Doblez</button>
+                        </div>
+                        <div class="col-sm-8 offset-2 mt-3">
+                            <button class="btn btn-block btn-primary" @click="rolado()">Rolado</button>
+                        </div>
+                        <div class="col-sm-8 offset-2 mt-3">
+                            <button class="btn btn-block btn-primary" @click="paint()">Pintura</button>
+                        </div>
+                        <div class="col-sm-8 offset-2 mt-3">
+                            <button class="btn btn-block btn-primary" @click="laser()">Laser</button>
                         </div>
                     </div>
 
